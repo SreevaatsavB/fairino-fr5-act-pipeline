@@ -1,0 +1,17 @@
+# core
+numpy>=1.24
+pandas>=2.0
+pyarrow>=14.0
+
+# viz / eda
+matplotlib>=3.7
+opencv-python>=4.8
+jupyterlab>=4.0
+
+# deep learning
+torch>=2.2
+torchvision>=0.17
+einops>=0.7
+
+# lerobot (pulls in transformers, huggingface-hub, datasets, etc.)
+lerobot>=0.1

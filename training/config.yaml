@@ -1,0 +1,30 @@
+dataset:
+  root: "../../so101-fr5-teleop/lerobot_dataset"
+  chunk_size: 100        # predict 100 steps at 30 Hz ≈ 3.3 s of future actions
+  use_image: true
+  image_size: [224, 224] # resize before feeding to backbone
+  val_frac: 0.1          # fraction of episodes held out for validation
+
+model:
+  state_dim: 6           # FR5 actual joint positions (deg)
+  action_dim: 7          # 6 joints (deg) + gripper norm [0, 1]
+  latent_dim: 32
+  d_model: 512
+  nhead: 8
+  num_encoder_layers: 4  # CVAE encoder depth
+  num_decoder_layers: 7  # transformer decoder depth
+  dim_feedforward: 3200
+  dropout: 0.1
+
+training:
+  batch_size: 8
+  lr: 1.0e-5
+  weight_decay: 1.0e-4
+  max_epochs: 100
+  grad_clip: 10.0
+  kl_weight: 10.0        # passed to lerobot's ACTConfig — keep in sync with model.kl_weight
+  save_every: 10
+  log_every: 50
+  checkpoint_dir: "./checkpoints"
+  device: "auto"         # auto | cuda | mps | cpu
+  seed: 42
