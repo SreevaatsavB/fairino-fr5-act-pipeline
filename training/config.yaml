@@ -15,6 +15,7 @@ model:
   num_decoder_layers: 7  # transformer decoder depth
   dim_feedforward: 3200
   dropout: 0.1
+  temporal_ensemble_coeff: 0.01  # null to disable; lower = trust older predictions more
 
 training:
   batch_size: 8

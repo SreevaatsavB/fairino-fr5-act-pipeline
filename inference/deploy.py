@@ -63,6 +63,7 @@ def load_policy(ckpt_path: str, device: torch.device) -> tuple[ACT, dict]:
         chunk_size=d["chunk_size"],
         use_image=d["use_image"],
         kl_weight=t["kl_weight"],
+        temporal_ensemble_coeff=m.get("temporal_ensemble_coeff"),
     )
 
     model = ACT(model_cfg, stats).to(device)

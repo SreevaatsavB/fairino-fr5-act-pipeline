@@ -63,6 +63,7 @@ def build_model(cfg, stats, device):
         chunk_size=d["chunk_size"],
         use_image=d["use_image"],
         kl_weight=cfg["training"]["kl_weight"],
+        temporal_ensemble_coeff=m.get("temporal_ensemble_coeff"),  # from model: section
     )
     model = ACT(model_cfg, stats).to(device)
     n = sum(p.numel() for p in model.parameters() if p.requires_grad)

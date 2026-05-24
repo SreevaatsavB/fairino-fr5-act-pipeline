@@ -23,9 +23,10 @@ class ACTConfig:
     num_decoder_layers: int   = 7
     dim_feedforward:    int   = 3200
     dropout:            float = 0.1
-    chunk_size:         int   = 100
-    use_image:          bool  = True
-    kl_weight:          float = 10.0
+    chunk_size:              int         = 100
+    use_image:               bool        = True
+    kl_weight:               float       = 10.0
+    temporal_ensemble_coeff: float | None = 0.01
 
 
 def _lerobot_config(cfg: ACTConfig) -> _LRConfig:
@@ -53,6 +54,7 @@ def _lerobot_config(cfg: ACTConfig) -> _LRConfig:
         dropout=cfg.dropout,
         kl_weight=cfg.kl_weight,
         use_vae=True,
+        temporal_ensemble_coeff=cfg.temporal_ensemble_coeff,
     )
 
     if cfg.use_image:
